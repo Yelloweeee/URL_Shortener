@@ -20,6 +20,8 @@
   "homepage": "https://github.com/Yelloweeee/URL_Shortener#readme",
   "dependencies": {
     "express": "^5.2.1",
-    "mongoose": "^9.9.2"
+    "mongoose": "^9.9.2",
+    "nanoid": "^6.0.1",
+    "nodemon": "^3.1.14"
   }
 }
