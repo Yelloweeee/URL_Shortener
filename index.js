@@ -1,15 +1,24 @@
 const express= require("express");
+const path= require('path');
 const{connectToMongoDB}=require("./connect")
 const app=express();
 const PORT=8001;
 const URL=require('./models/url');
+const staticRoute=require("./routes/staticRouter");
 
 connectToMongoDB('mongodb://localhost:27017/urlShortener')
 .then(()=> console.log('MongoDB connected'))
 
+app.set('view engine', 'ejs');
+app.set('views', path.resolve("./views"));
+
 const urlRoute=require('./routes/url')
 
 app.use(express.json()); //middleware
+app.use(express.urlencoded({extended: false}))
+
+app.use("/", staticRoute);
+
 app.use("/url", urlRoute);
 
 app.get('/:shortId', async (req,res)=>{
